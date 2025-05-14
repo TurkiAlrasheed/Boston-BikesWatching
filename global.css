@@ -102,20 +102,15 @@ header label {
   --color-arrivals: darkorange;
 }
 
-#map svg circle {
-  fill-opacity: 0.6;
-  stroke: white;
-  stroke-width: 1;
-  pointer-events: auto;
-  
-  --color-departures: steelblue;
-  --color-arrivals: darkorange;
+#map svg circle,
+.legend > div {
   --color: color-mix(
     in oklch,
     var(--color-departures) calc(100% * var(--departure-ratio)),
     var(--color-arrivals)
   );
-  fill: var(--color); /* 👈 this is what ensures visual update */
+  background-color: var(--color); /* ✅ for legend swatches */
+  fill: var(--color); /* ✅ for circles */
 }
 
 /* Legend container layout */
