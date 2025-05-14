@@ -33,3 +33,103 @@ body {
     pointer-events: none;
   
   }
+  #map svg circle {
+    fill: steelblue;
+    fill-opacity: 0.6;
+    stroke: white;
+    stroke-width: 1;
+    pointer-events: auto; /* ✅ Enable tooltips */
+  }
+
+  
+
+/* Header layout: title on left, slider on right */
+header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1em;
+  width: 100%;
+  margin-bottom: 0.5em;
+}
+
+
+
+
+
+/* Right-side label + slider */
+header label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.95em;
+}
+
+/* Make the slider longer */
+#time-slider {
+  width: 400px;  /* was 300px — now longer */
+  margin-top: 0.25em;
+}
+
+/* Display time or "any time" beneath slider */
+#selected-time,
+#any-time {
+  display: block;
+  text-align: right;
+  font-size: 0.9em;
+  margin-top: 0.3em;
+}
+
+#any-time {
+  color: #999;
+  font-style: italic;
+}
+.tooltip {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5em;
+  font-size: 0.9em;
+  pointer-events: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  transition: opacity 0.1s ease;
+  opacity: 0.95;
+  max-width: 220px;
+  z-index: 10;
+}
+:root {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+}
+
+#map circle,
+.legend > div {
+  --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+  fill: var(--color);
+  background-color: var(--color); /* Applies to legend swatches */
+}
+
+/* Legend container layout */
+.legend {
+  display: flex;
+  gap: 1px;
+  margin-block: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+/* Each legend item */
+.legend > div {
+  flex: 1;
+  padding: 0.5em 2em;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+}
