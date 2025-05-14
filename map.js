@@ -130,11 +130,9 @@ try {
   .enter()
   .append('circle')
   .attr('r', d => radiusScale(d.totalTraffic))
-  .attr('fill', 'steelblue')
   .attr('stroke', 'white')
   .attr('stroke-width', 1)
   .attr('opacity', 0.8)
-  .style('--departure-ratio', d => stationFlow(d.departures / d.totalTraffic))
   .on('mouseover', function (event, d) {
     d3.select('#tooltip')
       .style('display', 'block')
@@ -151,7 +149,8 @@ try {
   })
   .on('mouseout', function () {
     d3.select('#tooltip').style('display', 'none');
-  });
+  }).style('--departure-ratio', d => stationFlow(d.departures / d.totalTraffic));
+
   function updatePositions() {
     circles
       .attr('cx', (d) => getCoords(d).cx)
